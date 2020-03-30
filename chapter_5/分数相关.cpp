@@ -2,14 +2,18 @@
 #include <stdlib.h>
 using namespace std;
 
+// 分数的定义
 struct Fraction{
     int up,down;
 };
+
+// 求最小公约数
 int gcd(int a, int b){
     if(b==0) return a;
     else return gcd(b, a%b);
 }
 
+// 分数的化简
 Fraction reduction(Fraction result){
     if(result.down<0){
         result.up = -result.up;
@@ -25,6 +29,7 @@ Fraction reduction(Fraction result){
     return result;
 }
 
+// 分数加法
 Fraction add(Fraction f1, Fraction f2){
     Fraction result;
     result.down = f1.down*f2.down;
@@ -32,6 +37,8 @@ Fraction add(Fraction f1, Fraction f2){
     result = reduction(result);
     return result;
 }
+
+// 分数减法
 Fraction minu(Fraction f1, Fraction f2){
     Fraction result;
     result.down = f1.down*f2.down;
@@ -39,6 +46,8 @@ Fraction minu(Fraction f1, Fraction f2){
     result = reduction(result);
     return result;
 }
+
+// 分数乘法
 Fraction multi(Fraction f1, Fraction f2){
     Fraction result;
     result.down = f1.down*f2.down;
@@ -46,6 +55,8 @@ Fraction multi(Fraction f1, Fraction f2){
     result = reduction(result);
     return result;
 }
+
+// 分数除法
 Fraction divide(Fraction f1, Fraction f2){
     Fraction result;
     result.down = f1.down*f2.up;
@@ -54,6 +65,16 @@ Fraction divide(Fraction f1, Fraction f2){
     return result;
 }
 
+// 分数表示
+void show(Fraction r){
+    r = reduction(r);
+    if(r.down == 1)
+        cout<<r.up;
+    else if(r.up>r.down)
+        cout << r.up/r.down << r.up%r.down << r.down;
+    }   else{
+        cout << r.up << r.down;
+    }
 int main()
 {
     int m=2, n=4;
